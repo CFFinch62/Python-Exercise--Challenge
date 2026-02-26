@@ -1,0 +1,3 @@
+# Python Exercises for Beginners — runtime dependencies
+# All other imports (tkinter, subprocess, re, json, etc.) are Python stdlib.
+customtkinter>=5.2.0
