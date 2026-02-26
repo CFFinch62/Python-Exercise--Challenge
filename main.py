@@ -562,7 +562,18 @@ class ExerciseApp(ctk.CTk):
         if saved_code:
             self.code_editor.insert("1.0", saved_code)
         else:
-            self.code_editor.insert("1.0", f"# Exercise #{num}: {ex['title']}\n# Prerequisites: {ex['prerequisites']}\n\n")
+            template = (
+                f"# Exercise #{num}: {ex['title']}\n"
+                f"# Prerequisites: {ex['prerequisites']}\n\n"
+                "# --- SOLUTION CODE ---\n"
+                "# Write your exercise solution below. This is what gets evaluated\n"
+                "# when you click 'Submit'.\n\n\n\n"
+                "# --- TESTING CODE ---\n"
+                "# Write any code you want to manually test below this line.\n"
+                "# This section is run when you click 'Run', but is completely\n"
+                "# ignored by the 'Submit' validation.\n\n"
+            )
+            self.code_editor.insert("1.0", template)
         self.highlighter._highlight()
 
         # Clear console
@@ -681,6 +692,10 @@ class ExerciseApp(ctk.CTk):
 
         ex = EXERCISES[self.current_exercise_index]
         save_user_solution(ex["number"], code)
+        
+        # Only validate the solution code, ignore the testing code section
+        if "# --- TESTING CODE ---" in code:
+            code = code.split("# --- TESTING CODE ---")[0].strip()
 
         self._set_console("Checking solution...\n", color="#888")
         self.check_btn.configure(state="disabled")

@@ -55,11 +55,13 @@ The final executable will be generated in the `dist/` folder.
 
 1. Read the exercise description on the left panel
 2. Check the expected output / validation rules below the description
-3. Write your Python code in the editor on the right
-4. Click **▶ Run** to test your code and see output
-5. Click **✓ Submit** to validate your solution
+3. Write your Python code in the right editor, using the **SOLUTION CODE** and **TESTING CODE** sections appropriately.
+4. Click **▶ Run** to test your code and see output (runs both sections)
+5. Click **✓ Submit** to validate your solution (validates *only* the solution section)
 6. If it passes, the next exercise unlocks automatically!
 7. After completing an exercise, click **🔑 Solution** to compare with the book's solution
+
+**For more detailed instructions, please read the [USER-GUIDE.md](USER-GUIDE.md).**
 
 ## Exercise List
 
