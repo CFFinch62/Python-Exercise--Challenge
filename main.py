@@ -4,6 +4,23 @@ A GUI application guiding new programmers through 42 Python exercises
 from "Python Programming Exercises, Gently Explained" by Al Sweigart.
 """
 
+import sys
+if "--run-script" in sys.argv:
+    script_idx = sys.argv.index("--run-script") + 1
+    if script_idx < len(sys.argv):
+        import runpy
+        # Hide the --run-script from argv
+        script_path = sys.argv[script_idx]
+        sys.argv = [script_path]
+        try:
+            runpy.run_path(script_path, run_name="__main__")
+        except SystemExit as e:
+            sys.exit(e.code)
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+        sys.exit(0)
+
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
@@ -627,8 +644,12 @@ class ExerciseApp(ctk.CTk):
                 f.write(code)
                 tmpfile = f.name
 
+            cmd = [sys.executable, tmpfile]
+            if getattr(sys, "frozen", False):
+                cmd = [sys.executable, "--run-script", tmpfile]
+
             result = subprocess.run(
-                [sys.executable, tmpfile],
+                cmd,
                 input=stdin_input,
                 capture_output=True, text=True,
                 timeout=10, cwd=APP_DIR
