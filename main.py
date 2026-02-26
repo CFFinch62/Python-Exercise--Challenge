@@ -42,6 +42,9 @@ os.makedirs(SOLUTIONS_DIR, exist_ok=True)
 # Import exercise data (use bundle dir so PyInstaller can find the modules)
 sys.path.insert(0, _BUNDLE_DIR)
 
+# Path to the icon image
+ICON_PATH = os.path.join(_BUNDLE_DIR, "images", "PythonExercisesIcon.png")
+
 
 def load_progress():
     if os.path.exists(PROGRESS_FILE):
@@ -214,6 +217,16 @@ class ExerciseApp(ctk.CTk):
         self.geometry("1400x860")
         self.minsize(1100, 700)
         self.configure(fg_color=COLORS["bg_dark"])
+
+        try:
+            # Set window icon (taskbar & title bar)
+            if sys.platform == "linux":
+                icon = tk.PhotoImage(file=ICON_PATH)
+                self.iconphoto(True, icon)
+            else:
+                self.iconbitmap(ICON_PATH)
+        except Exception as e:
+            print(f"Warning: Could not load application icon: {e}")
 
         self.progress = load_progress()
         self.current_exercise_index = 0

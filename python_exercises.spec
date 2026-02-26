@@ -22,6 +22,8 @@ a = Analysis(
         # Bundle the data modules alongside main
         ('exercises_data.py', '.'),
         ('solutions_data.py', '.'),
+        # Bundle images folder
+        ('images', 'images'),
         # customtkinter requires its theme/image data at runtime
         *ctk_datas,
     ],
@@ -70,7 +72,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None,                 # Replace with 'icon.ico' (Win) / 'icon.icns' (Mac) if available
+    icon='images/PythonExercisesIcon.png',
 )
 
 # ── macOS .app bundle ─────────────────────────────────────────────────────────
@@ -78,7 +80,7 @@ if sys.platform == 'darwin':
     app = BUNDLE(
         exe,
         name='Python Exercises for Beginners.app',
-        icon=None,             # Replace with 'icon.icns' if available
+        icon='images/PythonExercisesIcon.png',
         bundle_identifier='com.pythonexercises.beginners',
         info_plist={
             'NSHighResolutionCapable': True,

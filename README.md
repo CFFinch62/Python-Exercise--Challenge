@@ -1,5 +1,7 @@
 # Python Exercises for Beginners
 
+![Python Exercises App Screenshot](images/PythonExercisesScreenshot.png)
+
 A GUI application that guides you through all 42 Python programming exercises from
 **"Python Programming Exercises, Gently Explained"** by Al Sweigart.
 
