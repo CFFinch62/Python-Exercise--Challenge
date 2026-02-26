@@ -22,6 +22,23 @@ pip install customtkinter
 python main.py
 ```
 
+## Building a Standalone Executable (Optional)
+
+You can package the app into a standalone executable that doesn't require Python to be installed on the target machine.
+
+1. Install PyInstaller:
+   ```bash
+   pip install pyinstaller
+   ```
+
+2. Run the included build script:
+   ```bash
+   python build.py
+   ```
+   *(To remove previous build artifacts before building, run `python build.py --clean`)*
+
+The final executable will be generated in the `dist/` folder.
+
 ## Features
 
 - **42 exercises** from beginner to intermediate level
